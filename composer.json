@@ -1,0 +1,23 @@
+{
+  "name": "nerdery/slim-adr",
+  "description": "Action/Domain/Responder Slim microservice",
+  "authors": [
+    {
+      "name": "Andrew Sannes",
+      "email": "asannes@nerdery.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Nerdery\\": "src/"
+    }
+  },
+  "require": {
+    "slim/slim": "^3.12",
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "monolog/monolog": "^1.24",
+    "doctrine/orm": "^2",
+    "erusev/parsedown": "^1.7"
+  }
+}

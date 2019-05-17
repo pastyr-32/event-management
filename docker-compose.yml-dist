@@ -1,0 +1,39 @@
+version: "3"
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_USER: changeMe
+      MYSQL_PASSWORD: changeMe
+      MYSQL_DATABASE: changeMe
+
+  php:
+    build: ./
+    volumes:
+      - .:/var/www/html
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_USER: changeMe
+      MYSQL_PASSWORD: changeMe
+      MYSQL_DATABASE: changeMe
+
+  db:
+    image: mysql/mysql-server
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/lib/mysql
+      - ./event.sql:/docker-entrypoint-initdb.d/dump.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: changeMe
+      MYSQL_USER: changeMe
+      MYSQL_PASSWORD: changeMe
+      MYSQL_DATABASE: changeMe
